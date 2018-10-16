@@ -1,18 +1,18 @@
 import React from 'react';
-import { View } from 'react-native';
+import { View, TextInput, Button } from 'react-native';
 
 const AddTodo = ({ onAddClick }) => {
   let input;
   return (
     <View>
-      <input ref={node => { input = node; }} />
-      <button onClick={() => { 
-          onAddClick(input.value);
-          input.value = '';
+      <TextInput ref={node => { this.text = node; }} />
+      <Button title="Add Todo" onPress={() => { 
+          onAddClick(this.text);
+          this.text = '';
         }}
       >
       Add Todo
-      </button>
+      </Button>
     </View> 
   );
 }

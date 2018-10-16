@@ -35,10 +35,14 @@ describe( 'todo reducer', () => {
         completed: false,
       }
     ];
+    const action = {
+      type: TOGGLE_TODO,
+      id: 1
+    };
     const stateAfter = [
       {
         id: 0,
-        text: 'a testing todo',
+        text: 'A testing todo',
         completed: false,
       },
       {
