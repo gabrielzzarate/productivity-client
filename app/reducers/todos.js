@@ -4,6 +4,7 @@ import { ADD_TODO, TOGGLE_TODO } from '../actions/types';
 const todo = (state, action) => {
   switch (action.type) {
     case ADD_TODO: 
+      console.log('action', action);
       return {
         id: action.id,
         text: action.text,

@@ -1,20 +1,31 @@
-import React from 'react';
+import React, { Component } from 'react';
 import { View, TextInput, Button } from 'react-native';
+import { connect } from 'react-redux';
+import { addTodo } from '../../actions';
 
-const AddTodo = ({ onAddClick }) => {
-  let input;
-  return (
-    <View>
-      <TextInput ref={node => { this.text = node; }} />
-      <Button title="Add Todo" onPress={() => { 
-          onAddClick(this.text);
-          this.text = '';
-        }}
-      >
-      Add Todo
-      </Button>
-    </View> 
-  );
+class AddTodo extends Component {
+  state = {
+    text: '',
+  }
+
+  render() {
+    return (
+      <View>
+        <TextInput
+          style={{height: 40}}
+          placeholder="Type todo"
+          onChangeText={(text) => this.setState({ text })}
+        />
+        <Button title="Add Todo" onPress={() => { 
+            this.props.addTodo(this.state.text);
+            this.setState({ text : ''});
+          }}
+        >
+        Add Todo
+        </Button>
+      </View> 
+    );
+  }
 }
 
-export default AddTodo;
+export default connect(null, { addTodo })(AddTodo);
