@@ -14,6 +14,7 @@ class AddTodo extends Component {
         <TextInput
           style={{height: 40}}
           placeholder="Type todo"
+          value={this.state.text}
           onChangeText={(text) => this.setState({ text })}
         />
         <Button title="Add Todo" onPress={() => { 

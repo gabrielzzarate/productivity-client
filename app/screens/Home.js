@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { StyleSheet, Text, View } from 'react-native';
 import AddTodo from '../components/AddTodo';
+import TodoList from '../components/TodoList';
 
 import { ADD_TODO } from '../actions/types';
 import store from '../../App';
@@ -24,11 +25,15 @@ class Home extends React.Component {
 
   render() {
     const { todos, visibilityFilter } = this.props.state; 
+    console.log('App State: todos', this.props.state.todos);
+
+    console.log('results', this.getVisibleTodos(todos, visibilityFilter));
+
     return (
       <View style={styles.container}>
-        <AddTodo />
-        {/* <TodoList todos={this.getVisibileTodos(todos, visibilityFilter)} /> */}
         <Text>Home</Text>
+        <TodoList todos={this.getVisibleTodos(todos, visibilityFilter)} />
+        <AddTodo />
       </View>
     );
   }
@@ -36,10 +41,13 @@ class Home extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 1,
-    backgroundColor: '#fff',
+    flex: 2,
+    backgroundColor: 'gray',
     alignItems: 'center',
-    justifyContent: 'center',
+    alignSelf: 'flex-start',
+    width: '100%',
+    // height: '100%',
+    justifyContent: 'flex-start',
   },
 });
 
