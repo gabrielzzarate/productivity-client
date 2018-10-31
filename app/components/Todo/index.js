@@ -1,9 +1,11 @@
 import React from 'react';
+import { Text } from 'react-native';
 
-const Todo = ({ text }) => (
-  <Text>
-    Get to work: {text}
-  </Text>
-);
-
+const Todo = (todo) => {
+  return (
+    <Text>
+      Get to work: {todo.text}
+    </Text>
+  );
+};
 export default Todo;

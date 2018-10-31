@@ -13,6 +13,7 @@ class Home extends React.Component {
   getVisibleTodos(todos, filter) {
     switch (filter) {
       case 'SHOW_ALL':
+        console.log('showing all', todos);
         return todos;
       case 'SHOW_COMPLETED':
         return todos.filter(t => t.completed);
@@ -27,13 +28,10 @@ class Home extends React.Component {
     const { todos, visibilityFilter } = this.props.state; 
     console.log('App State: todos', this.props.state.todos);
 
-    console.log('results', this.getVisibleTodos(todos, visibilityFilter));
-
     return (
       <View style={styles.container}>
-        <Text>Home</Text>
-        <TodoList todos={this.getVisibleTodos(todos, visibilityFilter)} />
-        <AddTodo />
+        <TodoList style={{ width: 100, height: 50, backgroundColor: 'skyblue'}} todos={this.getVisibleTodos(todos, visibilityFilter)} />
+        <AddTodo style={{ width: 100, height: 50 }} />
       </View>
     );
   }
@@ -42,12 +40,9 @@ class Home extends React.Component {
 const styles = StyleSheet.create({
   container: {
     flex: 2,
-    backgroundColor: 'gray',
+    flexDirection: 'column',
     alignItems: 'center',
-    alignSelf: 'flex-start',
-    width: '100%',
-    // height: '100%',
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
   },
 });
 
