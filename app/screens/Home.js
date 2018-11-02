@@ -30,8 +30,8 @@ class Home extends React.Component {
 
     return (
       <View style={styles.container}>
-        <TodoList style={{ width: 100, height: 50, backgroundColor: 'skyblue'}} todos={this.getVisibleTodos(todos, visibilityFilter)} />
-        <AddTodo style={{ width: 100, height: 50 }} />
+        <TodoList todos={this.getVisibleTodos(todos, visibilityFilter)} />
+        <AddTodo />
       </View>
     );
   }
@@ -39,7 +39,6 @@ class Home extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flex: 2,
     flexDirection: 'column',
     alignItems: 'center',
     justifyContent: 'center',
