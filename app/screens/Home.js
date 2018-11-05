@@ -3,11 +3,7 @@ import { connect } from 'react-redux';
 import { StyleSheet, Text, View } from 'react-native';
 import AddTodo from '../components/AddTodo';
 import TodoList from '../components/TodoList';
-
-import { ADD_TODO } from '../actions/types';
-import store from '../../App';
-
-const nextTodoId = 0;
+import { toggleTodo } from '../actions';
 
 class Home extends React.Component {
   getVisibleTodos(todos, filter) {
@@ -25,12 +21,17 @@ class Home extends React.Component {
   }
 
   render() {
-    const { todos, visibilityFilter } = this.props.state; 
-    console.log('App State: todos', this.props.state.todos);
+    const { state, toggleTodo } = this.props;
+    const { todos, visibilityFilter } = state; 
+
+    console.log('App State: todos', toggleTodo);
 
     return (
       <View style={styles.container}>
-        <TodoList todos={this.getVisibleTodos(todos, visibilityFilter)} />
+        <TodoList 
+          todos={this.getVisibleTodos(todos, visibilityFilter)} 
+          toggleTodo={toggleTodo} 
+        />
         <AddTodo />
       </View>
     );
@@ -45,10 +46,11 @@ const styles = StyleSheet.create({
   },
 });
 
-const mapStateToProps = ({...state }) => {
+
+const mapStateToProps = ({ ...state }) => {
   return {
     state
   };
 }
 
-export default connect(mapStateToProps, null)(Home);
+export default connect(mapStateToProps, { toggleTodo })(Home);

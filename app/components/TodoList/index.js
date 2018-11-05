@@ -2,13 +2,28 @@ import React from 'react';
 import { FlatList, View, StyleSheet } from 'react-native';
 import Todo from '../Todo';
 
-const TodoList = ({ todos, onTodoClick }) => (
-  <View styles={styles.container}>
-    {todos.map(todo => (
-      <Todo key={todo.id} {...todo} onPress={() => onTodoClick(todo.id)} />
-    ))}
-  </View>
-);
+class TodoList extends React.Component {
+  state = {
+    editState: null,
+  }
+
+  toggleEditState(id) {
+    console.log('id', id);
+    this.setState({ editState: id });
+  }
+
+  render() {
+    const { todos, toggleTodo } = this.props;
+    console.log('edit state', this.toggleEditState)
+    return (
+      <View styles={styles.container}>
+        {todos.map(todo => (
+          <Todo key={todo.id} {...todo} toggleTodo={toggleTodo} toggleEditState={() => this.toggleEditState.bind(this)} />
+        ))}
+      </View>
+    );
+  }
+};
 
 const styles = StyleSheet.create({
   container: {

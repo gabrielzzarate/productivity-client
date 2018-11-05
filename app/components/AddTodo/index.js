@@ -49,7 +49,6 @@ const styles = StyleSheet.create({
     width: 80,
     backgroundColor: 'blue',
     color: '#fff',
-
   }
 
 });
