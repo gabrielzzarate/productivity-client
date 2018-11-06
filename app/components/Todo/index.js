@@ -3,19 +3,34 @@ import { connect } from 'react-redux';
 import { toggleTodo } from '../../actions';
 import { TouchableWithoutFeedback, View, Text } from 'react-native';
 import Checkbox from 'react-native-checkbox';
+import EditTodo from '../EditTodo';
 
-const Todo = ({ text, id, completed, toggleTodo, toggleEditState }) => {
+const Todo = ({ text, id, completed, toggleTodo, toggleEditState, editState }) => {
+  if (!id) {
+    return;
+  }
+
+  const renderTodo = () => {
+    if (id === editState) {
+      return (<EditTodo />);
+    } else {
+      return (
+        <View>
+          <Checkbox
+            label={null}
+            checked={completed}
+            onChange={() => toggleTodo(id)}
+          />
+          <Text>{text}</Text>
+        </View>
+      );
+    }
+  }
+
   return (
-    <TouchableWithoutFeedback onPress={toggleEditState(id)}>
-      <View>
-        <Checkbox
-          label={text}
-          checked={completed}
-          onChange={() => toggleTodo(id)}
-        />
-        <Text>{text}</Text>
-      </View>
-    </TouchableWithoutFeedback>
+    <TouchableWithoutFeedback onPress={() => toggleEditState(id)}>
+      {renderTodo()}
+    </TouchableWithoutFeedback> 
   );
 };
 

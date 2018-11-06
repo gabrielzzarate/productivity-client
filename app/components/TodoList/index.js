@@ -8,17 +8,22 @@ class TodoList extends React.Component {
   }
 
   toggleEditState(id) {
-    console.log('id', id);
+    console.log('EDIT', id);
     this.setState({ editState: id });
   }
 
   render() {
     const { todos, toggleTodo } = this.props;
-    console.log('edit state', this.toggleEditState)
     return (
       <View styles={styles.container}>
         {todos.map(todo => (
-          <Todo key={todo.id} {...todo} toggleTodo={toggleTodo} toggleEditState={() => this.toggleEditState.bind(this)} />
+          <Todo
+            key={todo.id} 
+            {...todo} 
+            editState={this.state.editState} 
+            toggleTodo={toggleTodo} 
+            toggleEditState={(id) => this.toggleEditState(id)} 
+          />
         ))}
       </View>
     );
@@ -27,9 +32,8 @@ class TodoList extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    height: 200,
+    height: 400,
     width: 400,
-    backgroundColor: 'black',
     color: '#fff',
     marginBottom: 30,
   },

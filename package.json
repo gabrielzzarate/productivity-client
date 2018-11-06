@@ -25,6 +25,7 @@
     "react-native-checkbox": "^2.0.0",
     "react-redux": "^5.0.7",
     "redux": "^4.0.1",
+    "redux-form": "^7.4.2",
     "uuid": "^3.3.2",
     "whatwg-fetch": "^2.0.4"
   }
