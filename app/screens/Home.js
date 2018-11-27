@@ -20,10 +20,10 @@ class Home extends React.Component {
   }
 
   render() {
-    const { state, toggleTodo } = this.props;
+    const { state, toggleTodo, toggleEditState } = this.props;
     const { todos, visibilityFilter } = state; 
 
-    console.log('App State: todos', toggleTodo);
+    console.log('App State: todos', this.props.state);
 
     return (
       <View style={styles.container}>

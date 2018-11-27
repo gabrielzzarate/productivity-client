@@ -1,21 +1,39 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import { ScrollView, StyleSheet, TextInput } from 'react-native';
+import { editTodo } from '../../actions';
+import { View, StyleSheet, TextInput, Text, Button } from 'react-native';
 
-let EditTodo = ({ id, text, handleSubmit }) => {
+let EditTodo = ({ id, handleSubmit, handleTodoEdit, initialValues }) => {
+  if (initialValues.length < 1) {
+    return null;
+  }
+
+  const values = initialValues;
+  const { text } = values;
   
-  const renderInput = ({ input: { onChange, value, ...restInput }}) => {
-    return <TextInput onChangeText={onChange} value={value} style={styles.field} placeholder="Edit Todo" {...restInput} />
+  const renderInput = ({ input: { onChange, ...restInput }}) => {
+    return <TextInput onChangeText={onChange} style={styles.field} placeholder="Edit Todo" {...restInput} />
   }
 
   return (
-    <ScrollView keyboardShouldPersistTaps={'handled'} style={styles.container}>
+    <View style={styles.container}>
+      <Text>Hello World</Text>
       <Field
-        name={'todo'}
+        name="text"
         component={renderInput}
       />
-    </ScrollView>
+      <Button 
+        title="Edit Todo" 
+        type="submit"
+        onPress={() => { 
+          //this.props.editTodo(id);
+          handleSubmit(editTodo(id));
+        }}
+        >
+        Edit Todo
+        </Button>
+    </View>
   );
 }
 
@@ -24,7 +42,7 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   field: {
-    backgroundColor: 'black',
+    backgroundColor: 'gray',
     borderColor: 'red',
   },
 });
@@ -35,7 +53,11 @@ EditTodo = reduxForm({
 
 EditTodo = connect(
   state => ({
-    initialValues: state.todos.filter(todo => todo.editState)
+    initialValues: state.todos.filter(todo => {
+      if (todo.editState) {
+        return todo;
+      } 
+    })[0]
   })
 )(EditTodo);
 

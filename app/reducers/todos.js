@@ -19,8 +19,7 @@ const todo = (state, action) => {
         ...state,
         completed: !state.completed
       };
-    case TOGGLE_EDIT_STATE: {
-      console.log('id', action.id);
+    case TOGGLE_EDIT_STATE:
       if (state.id !== action.id) {
         return state;
       }
@@ -29,7 +28,7 @@ const todo = (state, action) => {
         ...state,
         editState: !state.editState
       };
-    }
+
     default:
       return state;
   }
@@ -37,7 +36,6 @@ const todo = (state, action) => {
 
 // handles how the state array of todos are updated
 const todos = (state = [], action) => {
-  console.log('action', action);
   switch (action.type) {
     case ADD_TODO:
       return [
@@ -47,8 +45,7 @@ const todos = (state = [], action) => {
     case TOGGLE_TODO: 
       return state.map(t => todo(t, action));
     case TOGGLE_EDIT_STATE:
-      console.log('edit state toggle');
-      return state.map(t => todo(t, action))
+      return state.map(t => todo(t, action));
     default:
       return state;
   }

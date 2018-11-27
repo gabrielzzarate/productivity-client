@@ -4,6 +4,10 @@ import Todo from '../Todo';
 
 class TodoList extends React.Component {
 
+  handleTodoEdit(e) {
+    console.log('edit event', e);
+  }
+
   render() {
     const { todos, toggleTodo, toggleEditState } = this.props;
     return (
@@ -14,6 +18,7 @@ class TodoList extends React.Component {
             {...todo}  
             toggleTodo={toggleTodo}
             toggleEditState={toggleEditState}
+            handleTodoEdit={this.handleTodoEdit}
           />
         ))}
       </View>
