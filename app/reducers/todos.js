@@ -1,4 +1,4 @@
-import { ADD_TODO, TOGGLE_TODO } from '../actions/types';
+import { ADD_TODO, TOGGLE_TODO, TOGGLE_EDIT_STATE } from '../actions/types';
 
 // handles how an individual todo is updated
 const todo = (state, action) => {
@@ -7,7 +7,8 @@ const todo = (state, action) => {
       return {
         id: action.id,
         text: action.text,
-        completed: false
+        completed: false,
+        editState: false,
       };
     case TOGGLE_TODO:
       if (state.id !== action.id) {
@@ -18,6 +19,17 @@ const todo = (state, action) => {
         ...state,
         completed: !state.completed
       };
+    case TOGGLE_EDIT_STATE: {
+      console.log('id', action.id);
+      if (state.id !== action.id) {
+        return state;
+      }
+
+      return {
+        ...state,
+        editState: !state.editState
+      };
+    }
     default:
       return state;
   }
@@ -25,6 +37,7 @@ const todo = (state, action) => {
 
 // handles how the state array of todos are updated
 const todos = (state = [], action) => {
+  console.log('action', action);
   switch (action.type) {
     case ADD_TODO:
       return [
@@ -33,6 +46,9 @@ const todos = (state = [], action) => {
       ];
     case TOGGLE_TODO: 
       return state.map(t => todo(t, action));
+    case TOGGLE_EDIT_STATE:
+      console.log('edit state toggle');
+      return state.map(t => todo(t, action))
     default:
       return state;
   }

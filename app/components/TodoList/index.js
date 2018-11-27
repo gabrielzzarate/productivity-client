@@ -3,26 +3,17 @@ import { FlatList, View, StyleSheet } from 'react-native';
 import Todo from '../Todo';
 
 class TodoList extends React.Component {
-  state = {
-    editState: null,
-  }
-
-  toggleEditState(id) {
-    console.log('EDIT', id);
-    this.setState({ editState: id });
-  }
 
   render() {
-    const { todos, toggleTodo } = this.props;
+    const { todos, toggleTodo, toggleEditState } = this.props;
     return (
       <View styles={styles.container}>
         {todos.map(todo => (
           <Todo
             key={todo.id} 
-            {...todo} 
-            editState={this.state.editState} 
-            toggleTodo={toggleTodo} 
-            toggleEditState={(id) => this.toggleEditState(id)} 
+            {...todo}  
+            toggleTodo={toggleTodo}
+            toggleEditState={toggleEditState}
           />
         ))}
       </View>

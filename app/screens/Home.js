@@ -3,13 +3,12 @@ import { connect } from 'react-redux';
 import { StyleSheet, Text, View } from 'react-native';
 import AddTodo from '../components/AddTodo';
 import TodoList from '../components/TodoList';
-import { toggleTodo } from '../actions';
+import { toggleTodo, toggleEditState } from '../actions';
 
 class Home extends React.Component {
   getVisibleTodos(todos, filter) {
     switch (filter) {
       case 'SHOW_ALL':
-        console.log('showing all', todos);
         return todos;
       case 'SHOW_COMPLETED':
         return todos.filter(t => t.completed);
@@ -31,6 +30,7 @@ class Home extends React.Component {
         <TodoList 
           todos={this.getVisibleTodos(todos, visibilityFilter)} 
           toggleTodo={toggleTodo} 
+          toggleEditState={toggleEditState}
         />
         <AddTodo />
       </View>
@@ -53,4 +53,4 @@ const mapStateToProps = ({ ...state }) => {
   };
 }
 
-export default connect(mapStateToProps, { toggleTodo })(Home);
+export default connect(mapStateToProps, { toggleTodo, toggleEditState })(Home);
