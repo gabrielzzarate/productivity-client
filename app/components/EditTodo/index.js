@@ -27,7 +27,6 @@ let EditTodo = ({ id, handleSubmit, handleTodoEdit, initialValues }) => {
         title="Edit Todo" 
         type="submit"
         onPress={() => { 
-          //this.props.editTodo(id);
           handleSubmit(editTodo(id));
         }}
         >

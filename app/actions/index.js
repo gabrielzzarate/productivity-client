@@ -1,9 +1,9 @@
-import { ADD_TODO, TOGGLE_TODO, EDIT_TODO, TOGGLE_EDIT_STATE } from './types';
+import { TODO_ADDED, TODO_TOGGLED, TODO_EDITED, TODO_EDIT_STATE_TOGGLED } from './types';
 import uuidv1 from 'uuid/v1';
 
 export const addTodo = (text) => {
   return {
-    type: ADD_TODO,
+    type: TODO_ADDED,
     id: uuidv1(),
     text
   }
@@ -11,25 +11,26 @@ export const addTodo = (text) => {
 
 export const toggleTodo = (todoId) => {
   return {
-    type: TOGGLE_TODO,
+    type: TODO_TOGGLED,
     id: todoId
   }
 }
 
 export const toggleEditState = (todoId) => {
   return {
-    type: TOGGLE_EDIT_STATE,
+    type: TODO_EDIT_STATE_TOGGLED,
     id: todoId
   }
 }
 
 export const editTodo = (todoId) => {
-  console.log('edit todo action', todoId);
   return (dispatch, getState) => {
     const { form } = getState();
 
+    const text = form.editTodo.values.text;
+
     console.log('form', form);
 
-    dispatch({ type: EDIT_TODO, id: todoId });
+    dispatch({ type: TODO_EDITED, id: todoId, text });
   }
 }

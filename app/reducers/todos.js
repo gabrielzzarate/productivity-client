@@ -1,16 +1,16 @@
-import { ADD_TODO, TOGGLE_TODO, TOGGLE_EDIT_STATE } from '../actions/types';
+import { TODO_ADDED, TODO_TOGGLED, TODO_EDIT_STATE_TOGGLED, TODO_EDITED } from '../actions/types';
 
 // handles how an individual todo is updated
 const todo = (state, action) => {
   switch (action.type) {
-    case ADD_TODO: 
+    case TODO_ADDED: 
       return {
         id: action.id,
         text: action.text,
         completed: false,
         editState: false,
       };
-    case TOGGLE_TODO:
+    case TODO_TOGGLED:
       if (state.id !== action.id) {
         return state;
       }
@@ -19,7 +19,7 @@ const todo = (state, action) => {
         ...state,
         completed: !state.completed
       };
-    case TOGGLE_EDIT_STATE:
+    case TODO_EDIT_STATE_TOGGLED:
       if (state.id !== action.id) {
         return state;
       }
@@ -28,6 +28,15 @@ const todo = (state, action) => {
         ...state,
         editState: !state.editState
       };
+    case TODO_EDITED:
+      if (state.id !== action.id) {
+        return state;
+      }
+
+      return {
+        ...state,
+        text: action.text,
+      }
 
     default:
       return state;
@@ -37,14 +46,16 @@ const todo = (state, action) => {
 // handles how the state array of todos are updated
 const todos = (state = [], action) => {
   switch (action.type) {
-    case ADD_TODO:
+    case TODO_ADDED:
       return [
         ...state,
         todo(undefined, action)
       ];
-    case TOGGLE_TODO: 
+    case TODO_TOGGLED: 
       return state.map(t => todo(t, action));
-    case TOGGLE_EDIT_STATE:
+    case TODO_EDIT_STATE_TOGGLED:
+      return state.map(t => todo(t, action));
+    case TODO_EDITED: 
       return state.map(t => todo(t, action));
     default:
       return state;
