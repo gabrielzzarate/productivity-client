@@ -3,14 +3,14 @@ import { TouchableWithoutFeedback, View, Text } from 'react-native';
 import Checkbox from 'react-native-checkbox';
 import EditTodo from '../EditTodo';
 
-const Todo = ({ text, id, completed, editState, toggleTodo, toggleEditState, handleTodoEdit }) => {
+const Todo = ({ text, id, completed, editState, toggleTodo, toggleEditState, editTodo, deleteTodo }) => {
   if (!id) {
-    return;
+    return null;
   }
 
   const renderTodo = () => {
     if (editState) {
-      return (<EditTodo id={id} text={text} handleTodoEdit={handleTodoEdit} />);
+      return (<EditTodo id={id} text={text} editTodo={editTodo} deleteTodo={deleteTodo} />);
     } else {
       return (
         <View>

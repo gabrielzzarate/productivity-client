@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { StyleSheet, Text, View } from 'react-native';
 import AddTodo from '../components/AddTodo';
 import TodoList from '../components/TodoList';
-import { toggleTodo, toggleEditState } from '../actions';
+import { toggleTodo, toggleEditState, editTodo, deleteTodo } from '../actions';
 
 class Home extends React.Component {
   getVisibleTodos(todos, filter) {
@@ -20,7 +20,7 @@ class Home extends React.Component {
   }
 
   render() {
-    const { state, toggleTodo, toggleEditState } = this.props;
+    const { state, toggleTodo, toggleEditState, editTodo, deleteTodo } = this.props;
     const { todos, visibilityFilter } = state; 
 
     console.log('App State: todos', this.props.state);
@@ -31,6 +31,8 @@ class Home extends React.Component {
           todos={this.getVisibleTodos(todos, visibilityFilter)} 
           toggleTodo={toggleTodo} 
           toggleEditState={toggleEditState}
+          editTodo={editTodo}
+          deleteTodo={deleteTodo}
         />
         <AddTodo />
       </View>
@@ -53,4 +55,4 @@ const mapStateToProps = ({ ...state }) => {
   };
 }
 
-export default connect(mapStateToProps, { toggleTodo, toggleEditState })(Home);
+export default connect(mapStateToProps, { toggleTodo, toggleEditState, editTodo, deleteTodo })(Home);

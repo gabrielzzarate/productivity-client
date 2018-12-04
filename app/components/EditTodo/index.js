@@ -1,13 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
-import { editTodo } from '../../actions';
 import { View, StyleSheet, TextInput, Text, Button } from 'react-native';
 
-let EditTodo = ({ id, handleSubmit, handleTodoEdit, initialValues }) => {
+let EditTodo = ({ id, handleSubmit, handleTodoEdit, editTodo, initialValues, deleteTodo }) => {
   if (initialValues.length < 1) {
     return null;
   }
+
+  console.log('edit action', editTodo);
 
   const values = initialValues;
   const { text } = values;
@@ -18,20 +19,32 @@ let EditTodo = ({ id, handleSubmit, handleTodoEdit, initialValues }) => {
 
   return (
     <View style={styles.container}>
-      <Text>Hello World</Text>
-      <Field
-        name="text"
-        component={renderInput}
-      />
-      <Button 
-        title="Edit Todo" 
-        type="submit"
-        onPress={() => { 
-          handleSubmit(editTodo(id));
-        }}
+      <Text>Todo Edit</Text>
+      <View>
+        <Field
+          name="text"
+          component={renderInput}
+        />
+        <Button 
+          title="Edit Todo" 
+          onPress={() => { 
+            //handleSubmit(editTodo(id));
+            editTodo(id);
+          }}
+          >
+          Edit Todo
+          </Button>
+      </View>
+      <View>
+        <Button
+          title="Delete Todo"
+          onPress={() => {
+            deleteTodo(id)
+          }}
         >
-        Edit Todo
+          Delete Todo
         </Button>
+      </View>
     </View>
   );
 }
@@ -49,6 +62,8 @@ const styles = StyleSheet.create({
 EditTodo = reduxForm({
   form: 'editTodo'
 })(EditTodo);
+
+
 
 EditTodo = connect(
   state => ({

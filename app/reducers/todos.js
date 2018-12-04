@@ -1,4 +1,4 @@
-import { TODO_ADDED, TODO_TOGGLED, TODO_EDIT_STATE_TOGGLED, TODO_EDITED } from '../actions/types';
+import { TODO_ADDED, TODO_TOGGLED, TODO_EDIT_STATE_TOGGLED, TODO_EDITED, TODO_DELETED } from '../actions/types';
 
 // handles how an individual todo is updated
 const todo = (state, action) => {
@@ -35,8 +35,18 @@ const todo = (state, action) => {
 
       return {
         ...state,
+        editState: false,
         text: action.text,
+      };
+    case TODO_DELETED:  
+      if (state.id !== action.id) {
+        return state;
       }
+
+      console.log('state', state);
+
+     return state;
+
 
     default:
       return state;
@@ -57,6 +67,10 @@ const todos = (state = [], action) => {
       return state.map(t => todo(t, action));
     case TODO_EDITED: 
       return state.map(t => todo(t, action));
+    case TODO_DELETED:
+      return {
+        ...state.filter(item => item.id !== action.id)
+      }
     default:
       return state;
   }

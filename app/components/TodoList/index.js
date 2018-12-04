@@ -1,15 +1,16 @@
 import React from 'react';
 import { FlatList, View, StyleSheet } from 'react-native';
 import Todo from '../Todo';
+import { isEmpty } from '../../utils';
+
 
 class TodoList extends React.Component {
 
-  handleTodoEdit(e) {
-    console.log('edit event', e);
-  }
-
   render() {
-    const { todos, toggleTodo, toggleEditState } = this.props;
+    const { todos, toggleTodo, toggleEditState, editTodo, deleteTodo } = this.props;
+    if (isEmpty(todos)) {
+      return null;
+    }
     return (
       <View styles={styles.container}>
         {todos.map(todo => (
@@ -18,7 +19,8 @@ class TodoList extends React.Component {
             {...todo}  
             toggleTodo={toggleTodo}
             toggleEditState={toggleEditState}
-            handleTodoEdit={this.handleTodoEdit}
+            editTodo={editTodo}
+            deleteTodo={deleteTodo}
           />
         ))}
       </View>
