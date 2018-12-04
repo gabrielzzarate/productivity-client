@@ -3,7 +3,6 @@ import { FlatList, View, StyleSheet } from 'react-native';
 import Todo from '../Todo';
 import { isEmpty } from '../../utils';
 
-
 class TodoList extends React.Component {
 
   render() {

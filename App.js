@@ -9,17 +9,19 @@ import Home from './app/screens/Home';
 
 export const store = createStore(reducer, applyMiddleware(reduxThunk));
 
-export default class App extends React.Component {
-  render() {
-    return (
-      <Provider store={store}>
-        <View style={styles.container}>
-          <Home />
-        </View>
-      </Provider>
-    );
-  }
-}
+// export default class App extends React.Component {
+//   render() {
+//     return (
+//       <Provider store={store}>
+//         <View style={styles.container}>
+//           <Home />
+//         </View>
+//       </Provider>
+//     );
+//   }
+// }
+
+export default from './storybook';
 
 const styles = StyleSheet.create({
   container: {
