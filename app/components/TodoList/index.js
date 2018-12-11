@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlatList, View, StyleSheet } from 'react-native';
+import { FlatList, View, Text, StyleSheet } from 'react-native';
 import Todo from '../Todo';
 import { isEmpty } from '../../utils';
 
@@ -8,10 +8,10 @@ class TodoList extends React.Component {
   render() {
     const { todos, toggleTodo, toggleEditState, editTodo, deleteTodo } = this.props;
     if (isEmpty(todos)) {
-      return null;
+      return <View style={styles.container}><Text>You have no more todos for today!</Text></View>;
     }
     return (
-      <View styles={styles.container}>
+      <View style={styles.container}>
         {todos.map(todo => (
           <Todo
             key={todo.id} 
@@ -29,10 +29,9 @@ class TodoList extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    height: 400,
-    width: 400,
-    color: '#fff',
-    marginBottom: 30,
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
   },
 });
 

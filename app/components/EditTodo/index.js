@@ -8,8 +8,6 @@ let EditTodo = ({ id, handleSubmit, handleTodoEdit, editTodo, initialValues, del
     return null;
   }
 
-  console.log('edit action', editTodo);
-
   const values = initialValues;
   const { text } = values;
   
@@ -28,7 +26,6 @@ let EditTodo = ({ id, handleSubmit, handleTodoEdit, editTodo, initialValues, del
         <Button 
           title="Edit Todo" 
           onPress={() => { 
-            //handleSubmit(editTodo(id));
             editTodo(id);
           }}
           >
@@ -51,7 +48,17 @@ let EditTodo = ({ id, handleSubmit, handleTodoEdit, editTodo, initialValues, del
 
 const styles = StyleSheet.create({
   container: {
-    marginBottom: 20,
+    height: 70,
+    width: 350,
+    borderRadius: 3,
+    borderWidth: 1,
+    backgroundColor: '#fff',
+    shadowColor: '#000',
+    shadowOffset: { width: 0, height: 2 },
+    shadowOpacity: 0.8,
+    shadowRadius: 1,
+    elevation: 1,
+    padding: 8,
   },
   field: {
     backgroundColor: 'gray',

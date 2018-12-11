@@ -9,8 +9,8 @@ export const EditState = () => (
 
 const styles = StyleSheet.create({
   container: {
-    height: 60,
-    width: 300,
+    height: 70,
+    width: 350,
     borderRadius: 3,
     borderWidth: 1,
     backgroundColor: '#fff',
@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.8,
     shadowRadius: 1,
     elevation: 1,
-    padding: 5,
+    padding: 8,
 
   },
 });

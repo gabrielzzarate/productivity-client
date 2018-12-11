@@ -24,6 +24,7 @@
     "react": "16.3.1",
     "react-native": "~0.55.2",
     "react-native-checkbox": "^2.0.0",
+    "react-native-elements": "^1.0.0-beta7",
     "react-redux": "^5.0.7",
     "redux": "^4.0.1",
     "redux-form": "^7.4.2",

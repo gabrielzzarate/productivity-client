@@ -43,8 +43,6 @@ const todo = (state, action) => {
         return state;
       }
 
-      console.log('state', state);
-
      return state;
 
 

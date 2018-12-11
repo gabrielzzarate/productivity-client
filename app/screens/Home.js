@@ -42,9 +42,10 @@ class Home extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    flexDirection: 'column',
-    alignItems: 'center',
-    justifyContent: 'center',
+    flex: 1,
+    backgroundColor: '#4A6572',
+    //alignItems: 'center',
+    //justifyContent: 'center',
   },
 });
 

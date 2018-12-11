@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { View, TextInput, Button, StyleSheet } from 'react-native';
+import { View, TextInput, Button, StyleSheet, TouchableHightlight } from 'react-native';
 import { connect } from 'react-redux';
 import { addTodo } from '../../actions';
 
@@ -18,15 +18,14 @@ class AddTodo extends Component {
           onChangeText={(text) => this.setState({ text })}
         />
         <Button 
-          title="Add Todo" 
+          title="+" 
           style={styles.button}
+          color='#F9AA33'
           onPress={() => { 
             this.props.addTodo(this.state.text);
             this.setState({ text : ''});
           }}
-        >
-        Add Todo
-        </Button>
+        />
       </View> 
     );
   }
@@ -34,8 +33,8 @@ class AddTodo extends Component {
 
 const styles = StyleSheet.create({
   container: {
-    height: 100,
-    maxWidth: 400,
+    flex: 3,
+    alignItems: 'center',
     justifyContent: 'center',
   },
   input: {
@@ -44,11 +43,15 @@ const styles = StyleSheet.create({
     alignSelf: 'center',
     paddingLeft: 5,
     marginBottom: 10,
+    backgroundColor: '#344955',
+    borderRadius: 3,
   },
   button: {
     width: 80,
-    backgroundColor: 'blue',
-    color: '#fff',
+    height: 80,
+    color: 'black',
+    backgroundColor: '#F9AA33',
+    borderRadius: 50,
   }
 
 });

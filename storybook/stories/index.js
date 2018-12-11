@@ -2,6 +2,7 @@ import React from 'react';
 import { storiesOf } from '@storybook/react-native';
 import { View, Text } from 'react-native';
 import { EditState } from './components/EditState';
+import { Input } from './components/TextInput';
 
 const style = {
   flex: 1,
@@ -15,6 +16,13 @@ const CenteredView = ({ children }) => (
     {children}
   </View>
 );
+
+storiesOf('TextInput', module)
+  .add('default text field', () => (
+    <CenteredView>
+      <Input />
+    </CenteredView>
+  ));
 
 storiesOf('EditState', module)
   .add('default view', () => (
