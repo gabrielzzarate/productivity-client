@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { Field, reduxForm } from 'redux-form';
 import { View, StyleSheet, TextInput, Text, Button } from 'react-native';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 let EditTodo = ({ id, handleSubmit, handleTodoEdit, editTodo, initialValues, deleteTodo }) => {
   if (initialValues.length < 1) {
@@ -12,35 +13,36 @@ let EditTodo = ({ id, handleSubmit, handleTodoEdit, editTodo, initialValues, del
   const { text } = values;
   
   const renderInput = ({ input: { onChange, ...restInput }}) => {
-    return <TextInput onChangeText={onChange} style={styles.field} placeholder="Edit Todo" {...restInput} />
+    return <TextInput autoFocus onChangeText={onChange} style={styles.field} placeholder="Title" {...restInput} />
   }
 
   return (
     <View style={styles.container}>
-      <Text>Todo Edit</Text>
       <View>
         <Field
           name="text"
           component={renderInput}
         />
-        <Button 
-          title="Edit Todo" 
+      </View>
+      <View style={styles.buttonWrapper}>
+        <Icon 
+          style={styles.button}
+          name="edit" 
+          size={18} 
+          color="#4A6572"
           onPress={() => { 
             editTodo(id);
           }}
-          >
-          Edit Todo
-          </Button>
-      </View>
-      <View>
-        <Button
-          title="Delete Todo"
+        />
+        <Icon
+          style={styles.button}
+          name="trash"
+          size={18}
+          color="#4A6572"
           onPress={() => {
             deleteTodo(id)
           }}
-        >
-          Delete Todo
-        </Button>
+        />
       </View>
     </View>
   );
@@ -53,16 +55,20 @@ const styles = StyleSheet.create({
     borderRadius: 3,
     borderWidth: 1,
     backgroundColor: '#fff',
-    shadowColor: '#000',
-    shadowOffset: { width: 0, height: 2 },
-    shadowOpacity: 0.8,
-    shadowRadius: 1,
-    elevation: 1,
     padding: 8,
   },
   field: {
-    backgroundColor: 'gray',
-    borderColor: 'red',
+  },
+  buttonWrapper: {
+    paddingRight: 10,
+    paddingLeft: 10,
+    flex: 1,
+    justifyContent: 'flex-end',
+    alignItems: 'baseline',
+    flexDirection: 'row',
+  },
+  button: {
+    paddingLeft: 5,
   },
 });
 

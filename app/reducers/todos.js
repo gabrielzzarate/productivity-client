@@ -6,9 +6,9 @@ const todo = (state, action) => {
     case TODO_ADDED: 
       return {
         id: action.id,
-        text: action.text,
+        text: null,
         completed: false,
-        editState: false,
+        editState: true,
       };
     case TODO_TOGGLED:
       if (state.id !== action.id) {

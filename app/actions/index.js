@@ -1,11 +1,10 @@
 import { TODO_ADDED, TODO_TOGGLED, TODO_EDITED, TODO_DELETED, TODO_EDIT_STATE_TOGGLED } from './types';
 import uuidv1 from 'uuid/v1';
 
-export const addTodo = (text) => {
+export const addTodo = () => {
   return {
     type: TODO_ADDED,
     id: uuidv1(),
-    text
   }
 }
 
